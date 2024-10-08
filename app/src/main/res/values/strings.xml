@@ -2,4 +2,11 @@
     <string name="app_name">SMD-Assignment_2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_task_heading">Add New Task</string>
+    <string name="et_task_name_hint">Task Name</string>
+    <string name="et_task_desc_hint">Task Description</string>
+    <string name="btn_save_text">Save</string>
+    <string name="my_to_do_list_heading">My To Do List</string>
+    <string name="description_hello_dummy">Description hello</string>
+    <string name="to_do_task_dummy">To do Task</string>
 </resources>

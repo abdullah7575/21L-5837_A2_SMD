@@ -14,7 +14,8 @@
         android:text="@string/hello_blank_fragment"
         android:id="@+id/tvName"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="@dimen/frag_detail_name_textSize"
+        android:gravity="center"
 
 
         />
@@ -22,8 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDescription"
-        android:text="Description hello"
-        android:textSize="25sp"
+        android:text="@string/description_hello_dummy"
+        android:textSize="@dimen/frag_detail_tvDesc_textSize"
+        android:gravity="center"
 
         />
 

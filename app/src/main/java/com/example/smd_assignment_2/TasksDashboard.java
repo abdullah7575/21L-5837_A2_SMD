@@ -1,5 +1,8 @@
 package com.example.smd_assignment_2;
 
+import static com.google.android.material.internal.ViewUtils.hideKeyboard;
+
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -98,21 +101,29 @@ public class TasksDashboard extends AppCompatActivity implements TaskAdapter.Tas
         tvDescription = viewTaskDetailFrag.findViewById(R.id.tvDescription);
         potrait = findViewById(R.id.potrait);
 
-        if(potrait!=null){
-            fragmentManager.beginTransaction()
-                    .show(taskListFrag)
-                    .hide(taskDetailFrag)
-                    .hide(addTaskFrag)
-                    .commit();
+        // Initialize TextViews only if TaskDetailFrag is available
+        if(viewTaskDetailFrag != null){
+            tvName = viewTaskDetailFrag.findViewById(R.id.tvName);
+            tvDescription = viewTaskDetailFrag.findViewById(R.id.tvDescription);
+            tvName.setVisibility(View.GONE);
+            tvDescription.setText("Select any task to show details");
         }
-        else{
-            viewTaskDetailFrag.setVisibility(View.VISIBLE);
-            fragmentManager.beginTransaction()
-                    .hide(taskListFrag)
-                    .hide(addTaskFrag)
-                    .show(taskDetailFrag)
-                    .commit();
-        }
+
+//        if(potrait!=null){
+//            fragmentManager.beginTransaction()
+//                    .show(taskListFrag)
+//                    .hide(taskDetailFrag)
+//                    .hide(addTaskFrag)
+//                    .commit();
+//        }
+//        else{
+//            viewTaskDetailFrag.setVisibility(View.VISIBLE);
+//            fragmentManager.beginTransaction()
+//                    .hide(taskListFrag)
+//                    .hide(addTaskFrag)
+//                    .show(taskDetailFrag)
+//                    .commit();
+//        }
 
         tvName.setVisibility(View.GONE);
         tvDescription.setText("Select any task to show details");
@@ -144,29 +155,58 @@ public class TasksDashboard extends AppCompatActivity implements TaskAdapter.Tas
             }
 
         });
-        btnSave = viewAddTaskFrag.findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onTaskAdded();
-            }
-        });
+        if(addTaskFrag != null) {
+            btnSave = viewAddTaskFrag.findViewById(R.id.btnSave);
+            btnSave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTaskAdded();
+                }
+            });
+        }
+        // Set fragment visibility based on orientation
+        setFragmentVisibility();
 
+    }
+    private void setFragmentVisibility() {
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait Mode
+            fragmentManager.beginTransaction()
+                    .show(taskListFrag)
+                    .hide(taskDetailFrag)
+                    .hide(addTaskFrag)
+                    .commit();
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape Mode
+            fragmentManager.beginTransaction()
+                    .show(taskListFrag)
+                    .show(taskDetailFrag)
+                    .hide(addTaskFrag)
+                    .commit();
+        }
     }
 
     @Override
     public void onTaskClick(int position) {
-        if(potrait!=null){
+
+        int orientation = getResources().getConfiguration().orientation;
+        Task task = tasks.get(position);
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // In Portrait, show TaskDetailFrag
             fragmentManager.beginTransaction()
                     .hide(taskListFrag)
                     .show(taskDetailFrag)
                     .addToBackStack(null)
                     .commit();
         }
-        tvName.setVisibility(View.VISIBLE);
-        Task task = tasks.get(position);
-        tvName.setText(task.getName());
-        tvDescription.setText(task.getDescription());
+        //Updating TaskDetailFrag UI
+        if (tvName != null && tvDescription != null) {
+            tvName.setVisibility(View.VISIBLE);
+            tvName.setText(task.getName());
+            tvDescription.setText(task.getDescription());
+        }
 
     }
 
@@ -186,33 +226,28 @@ public class TasksDashboard extends AppCompatActivity implements TaskAdapter.Tas
         Toast.makeText(this, "Task Deleted Successfully", Toast.LENGTH_SHORT).show();
     }
 
+
     public void onTaskAdded() {
-//        tasks.add(task);
-//        taskAdapter.notifyDataSetChanged();
         EditText etName = viewAddTaskFrag.findViewById(R.id.etTaskName);
         EditText etDescription = viewAddTaskFrag.findViewById(R.id.etTaskDescription);
         String name = etName.getText().toString().trim();
         String description = etDescription.getText().toString().trim();
-        if(!name.isEmpty() && !description.isEmpty()){
+        if (!name.isEmpty() && !description.isEmpty()) {
             etName.setText("");
             etDescription.setText("");
-            Task newTask = new Task(name,description);
+            Task newTask = new Task(name, description);
             tasks.add(newTask);
             taskAdapter.notifyDataSetChanged();
-            if(potrait!=null){
-                fragmentManager.beginTransaction()
-                        .hide(addTaskFrag)
-                        .hide(taskDetailFrag)
-                        .show(taskListFrag)
-                        .commit();
-            }
-            else{
-                fragmentManager.beginTransaction()
-                        .hide(taskListFrag)
-                        .hide(addTaskFrag)
-                        .show(taskDetailFrag)
-                        .commit();
-            }
+            fragmentManager.popBackStack(); // Remove AddTaskFrag from the back stack
+            setFragmentVisibility(); // Restore fragment visibility based on orientation
+        } else {
+            Toast.makeText(this, "Please enter both name and description", Toast.LENGTH_SHORT).show();
         }
+    }
+        @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Update fragment visibility when orientation changes
+        setFragmentVisibility();
     }
 }

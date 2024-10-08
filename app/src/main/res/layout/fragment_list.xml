@@ -3,19 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:padding="@dimen/frag_list_padding"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TaskListFrag">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My To Do List"
+        android:text="@string/my_to_do_list_heading"
         android:textStyle="bold"
-        android:textSize="35sp"
-        android:forceDarkAllowed="false"
+        android:textSize="@dimen/my_todo_list_fontSize"
         android:textColor="@color/custom_blue"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/my_to_do_lsit_marginTop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,9 +23,9 @@
         />
     <ListView
         android:id="@+id/lvTasks_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="35dp"
+        android:layout_width="@dimen/zero_width"
+        android:layout_height="@dimen/zero_width"
+        android:layout_marginTop="@dimen/listView_marginTop"
         app:layout_constraintTop_toBottomOf="@+id/tvMainHeading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_blue">#2F14C5</color>
+    <color name="add_task_heading">#2F14C5</color>
+    <color name="btn_save_color">#6555E9</color>
 </resources>

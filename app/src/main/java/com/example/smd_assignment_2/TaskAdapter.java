@@ -2,6 +2,7 @@ package com.example.smd_assignment_2;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import java.util.List;
 public class TaskAdapter extends ArrayAdapter<Task> {
     Context context;
     int resource;
-
+    private static final String TAG = "TaskAdapter";
     public interface TaskSelected {
         void onTaskClick(int position);
         void onDoneIconClick(Task t);
@@ -36,17 +37,25 @@ public class TaskAdapter extends ArrayAdapter<Task> {
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
+            Log.d(TAG, "Inflating new view for position: " + position);
             // attach view
             // parent.getContext() also by sir in from()?
             convertView = LayoutInflater.from(context).inflate(resource, parent, false);
 
+        }
+        else{
+            Log.d(TAG, "Reusing existing view for position: " + position);
         }
 
         // set data to this view
         Task task = getItem(position);
         TextView tvTaskName = convertView.findViewById(R.id.tvTaskName);
         if (task != null) {
+            Log.d(TAG, "Binding task: " + task.getName() + " to position: " + position);
             tvTaskName.setText(task.getName());
+        }
+        else{
+            Log.e(TAG, "Task at position " + position + " is null.");
         }
         tvTaskName.setOnClickListener(new View.OnClickListener() {
             @Override

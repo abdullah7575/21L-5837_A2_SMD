@@ -8,21 +8,21 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="To do Task"
+        android:text="@string/to_do_task_dummy"
         android:layout_weight="1"
-        android:textSize="28sp"
+        android:textSize="@dimen/to_do_task_dummy_textSize"
         android:id="@+id/tvTaskName"
         />
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/ivDone_width"
+        android:layout_height="@dimen/iv_done_height"
         android:src="@drawable/done_icon"
         android:id="@+id/ivDoneIcon"
 
         />
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/iv_del_width"
+        android:layout_height="@dimen/iv_del_height"
         android:src="@drawable/delete_icon"
         android:id="@+id/ivDelIcon"
         />

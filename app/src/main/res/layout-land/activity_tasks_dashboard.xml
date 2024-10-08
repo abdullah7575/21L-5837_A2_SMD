@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <fragment
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_width"
         android:layout_weight="1"
         android:layout_height="match_parent"
         class="com.example.smd_assignment_2.TaskListFrag"
@@ -17,9 +17,9 @@
         tools:layout="@layout/fragment_list"
         />
     <fragment
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_width"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="2"
         tools:layout="@layout/fragment_task_detail"
         class="com.example.smd_assignment_2.TaskDetailFrag"
         android:id="@+id/task_detail_frag"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/fab_margin"
         android:id="@+id/fab_add_task"
         android:src="@drawable/add_image"
         />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero_width">0dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="add_task_padding">16dp</dimen>
+    <dimen name="add_task_heading">30sp</dimen>
+    <dimen name="add_task_heading_margin_top">50dp</dimen>
+    <dimen name="et_task_name_fontSize">20sp</dimen>
+    <dimen name="et_task_name_marginTop">30dp</dimen>
+    <dimen name="et_desc_marginTop">16dp</dimen>
+    <dimen name="btn_save_marginTop">30dp</dimen>
+    <dimen name="frag_list_padding">10dp</dimen>
+    <dimen name="my_todo_list_fontSize">35sp</dimen>
+    <dimen name="my_to_do_lsit_marginTop">25dp</dimen>
+    <dimen name="listView_marginTop">35dp</dimen>
+    <dimen name="frag_detail_name_textSize">30sp</dimen>
+    <dimen name="frag_detail_tvDesc_textSize">25sp</dimen>
+    <dimen name="to_do_task_dummy_textSize">28sp</dimen>
+    <dimen name="ivDone_width">50dp</dimen>
+    <dimen name="iv_done_height">50dp</dimen>
+    <dimen name="iv_del_width">50dp</dimen>
+    <dimen name="iv_del_height">50dp</dimen>
+</resources>

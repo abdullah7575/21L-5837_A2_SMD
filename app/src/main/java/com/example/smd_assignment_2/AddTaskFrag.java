@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class AddTaskFrag extends Fragment {
+    private static final String TAG = "AddTaskFrag";
 //    EditText etTaskName;
 //    EditText etTaskDescription;
 //    Button btnSave;
@@ -84,30 +86,56 @@ public class AddTaskFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView called");
         // Inflate the layout for this fragment
 //        View view = inflater.inflate(R.layout.fragment_add_task, container, false);
         return inflater.inflate(R.layout.fragment_add_task, container, false);
-//        etTaskName = view.findViewById(R.id.etTaskName);
-//        etTaskDescription = view.findViewById(R.id.etTaskDescription);
-//        btnSave = view.findViewById(R.id.btnSave);
-//
-//        btnSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String name = etTaskName.getText().toString().trim();
-//                String description = etTaskDescription.getText().toString().trim();
-//
-//                if(!name.isEmpty() && !description.isEmpty()){
-//                    Task newTask = new Task(name,description);
-//                    listener.onTaskAdded(newTask);
-//                    //closing fragment after getting input
-//                    getActivity().getSupportFragmentManager().popBackStack();
-//                }
-//                else {
-//                    Toast.makeText(getContext(), "Please enter both name and description for task", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//        return view;
+    }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated called");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop called");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy called");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "onDetach called");
     }
 }

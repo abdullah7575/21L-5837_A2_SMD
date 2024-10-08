@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TasksDashboard"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <fragment
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero_width"
         android:layout_weight="1"
-        android:layout_height="match_parent"
         class="com.example.smd_assignment_2.TaskListFrag"
         android:id="@+id/task_list_frag"
         tools:layout="@layout/fragment_list"
@@ -22,7 +22,6 @@
         tools:layout="@layout/fragment_task_detail"
         class="com.example.smd_assignment_2.TaskDetailFrag"
         android:id="@+id/task_detail_frag"
-        android:visibility="gone"
         />
     <fragment
         android:layout_width="match_parent"
@@ -37,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/fab_margin"
         android:id="@+id/fab_add_task"
         android:src="@drawable/add_image"
         />
